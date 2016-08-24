@@ -10,6 +10,15 @@
 
 @implementation Barista
 
+- (BOOL)prepareEspresso:(EspressoMachine *)espressoMachine {
+    [espressoMachine addWater];
+    [espressoMachine addBeans];
+    [espressoMachine heatWater];
+    
+    return espressoMachine.hasWater && espressoMachine.hasBeans && espressoMachine.waterIsHot;
+}
+
+
 - (void)espressoMachineDidFinishMakingEspresso:(EspressoMachine *)espressoMachine {
     if (espressoMachine.hasWater && espressoMachine.hasBeans && espressoMachine.waterIsHot) {
         NSLog(@"Here is your espresso! Thank you and have a nice day!");

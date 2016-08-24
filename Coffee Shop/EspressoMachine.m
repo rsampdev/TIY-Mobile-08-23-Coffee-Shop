@@ -22,22 +22,22 @@
 }
 
 - (BOOL)makeEspresso {
-    [self addWater];
-    [self addBeans];
-    [self heatWater];
-    
     if (self.delegate != nil) {
         id<EspressoMachineDelegate> strongDelegate = self.delegate;
         
-        BOOL shouldEspressoMachineWaterHasBecomeHot = [strongDelegate respondsToSelector:@selector(espressoMachineWaterHasBecomeHot:)];
+        BOOL shouldPrepareEspresso = [strongDelegate prepareEspresso:self];
         
-        if (shouldEspressoMachineWaterHasBecomeHot) {
-            [strongDelegate espressoMachineWaterHasBecomeHot:self];
+        if (shouldPrepareEspresso) {
+            BOOL shouldEspressoMachineWaterHasBecomeHot = [strongDelegate respondsToSelector:@selector(espressoMachineWaterHasBecomeHot:)];
+            
+            if (shouldEspressoMachineWaterHasBecomeHot) {
+                [strongDelegate espressoMachineWaterHasBecomeHot:self];
+            }
+            
+            [strongDelegate espressoMachineDidFinishMakingEspresso:self];
+            
+            return YES;
         }
-        
-        [strongDelegate espressoMachineDidFinishMakingEspresso:self];
-        
-        return YES;
     }
     
     return NO;

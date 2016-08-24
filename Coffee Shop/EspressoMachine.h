@@ -31,6 +31,8 @@
 
 - (void)espressoMachineDidFinishMakingEspresso:(EspressoMachine *)espressoMachine;
 
+- (BOOL)prepareEspresso:(EspressoMachine *)espressoMachine;
+
 @optional
 
 - (void)espressoMachineWaterHasBecomeHot:(EspressoMachine *)espressoMachine;
