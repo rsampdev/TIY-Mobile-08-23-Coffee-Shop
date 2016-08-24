@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EspressoMachine.h"
+#import "Barista.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Barista * barista = [[Barista alloc] init];
+        EspressoMachine * espressoMachine = [[EspressoMachine alloc] init];
+        [espressoMachine setDelegate:barista];
+        [espressoMachine makeEspresso];
     }
     return 0;
 }
